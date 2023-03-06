@@ -19,7 +19,8 @@ class Matrix{
                 else{
                     val = true;
                 }
-            }
+            }if(!val)
+                break;
         }
         if(val){
             System.out.println("The matrix is symmetric");
