@@ -7,8 +7,8 @@ class CPU{
         int cores;
         String promanu;
         public static class RAM{
-            static int memory;
-            static String rammanu;
+            int memory;
+            String rammanu;
         }
     }
 }
@@ -24,8 +24,9 @@ public class Question5{
         processor.promanu = sc.next();
         cpu1.price = sc.nextInt();
         System.out.println("Enter the Memory Size, Manufacturer and price of the RAM:");
-        CPU.Processor.RAM.memory = sc.nextInt();
-        CPU.Processor.RAM.rammanu = sc.next();
+        CPU.Processor.RAM ram = new CPU.Processor.RAM();
+        ram.memory = sc.nextInt();
+        ram.rammanu = sc.next();
         cpu2.price = sc.nextInt();
         System.out.println(".............................................................");
         System.out.println("Processor Details:");
@@ -34,8 +35,8 @@ public class Question5{
         System.out.println(cpu1.price);
         System.out.println(".............................................................");
         System.out.println("RAM Details:");
-        System.out.println(CPU.Processor.RAM.memory);
-        System.out.println(CPU.Processor.RAM.rammanu);
+        System.out.println(ram.memory);
+        System.out.println(ram.rammanu);
         System.out.println(cpu2.price);
     }
 }
