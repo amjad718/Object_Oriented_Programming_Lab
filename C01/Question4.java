@@ -1,23 +1,13 @@
 package newPackage;
+import java.util.*;
 class Matrix{
-    int[][] mats = new int[3][3];
-    void transpose(int[][] mat,int N){
-        for(int i=0;i<N;i++){
-            for(int j=0;j<N;j++){
-                mats[i][j] = mat[j][i];
-            }
-        }
-    }
     void display(int[][] mat,int N){
-        boolean val = false;
+        boolean val = true;
         for(int i=0;i<N;i++){
             for(int j=0;j<N;j++){
-                if(mats[i][j] != mat[i][j]){
+                if(mat[i][j] != mat[j][i]){
                     val = false;
                     break;
-                }
-                else{
-                    val = true;
                 }
             }if(!val)
                 break;
@@ -33,13 +23,18 @@ class Matrix{
 public class Question4 {
 
     public static void main(String[] args) {
+        Scanner sc =  new Scanner(System.in);
         Matrix res = new Matrix();
-        int flag = 0;
-        int [][] mat = {{1,3,5},
-                        {3,2,4},
-                        {5,4,5}};
+        System.out.println("Enter the matrix row or column size(any one):");
+        int n = sc.nextInt();
+        int[][] mat = new int[n][n];
+        System.out.println("Enter the matrix:");
+        for(int i=0; i<n; i++) {
+            for(int j=0; j<n; j++){
+                mat[i][j] = sc.nextInt();
+            }
+        }
         int N = mat.length;
-        res.transpose(mat,N);
         res.display(mat,N);
     }
 }
