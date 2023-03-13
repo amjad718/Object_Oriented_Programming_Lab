@@ -17,7 +17,8 @@ public class Question4 {
         Scanner sc = new Scanner(System.in);
         System.out.println("How much employee details do you want to enter?");
         int n = sc.nextInt();
-      //Array of objects
+
+        //Initializing Array of objects
         Employee[] emp = new Employee[n];
 
         for(int i=0; i<n; i++){
@@ -28,11 +29,13 @@ public class Question4 {
             emp[i] = new Employee(num,name,salary);
         }
 
+        // Asking user for the required eNo to search in array
         System.out.println();
         System.out.println("Enter the eNo of the employee to find the details:");
         int No = sc.nextInt();
         boolean flag = false;
-        //Searching
+
+        // Searching for the required item in the array
         for(int i=0; i<n; i++) {
             if (emp[i].eNo == No) {
                 flag = true;
