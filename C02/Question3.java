@@ -48,6 +48,18 @@ class Functions{
         System.out.println("String replaced at the first occurrence only: "+str.replaceFirst(l1,l2));
         System.out.println("String replaced with every occurrence: "+str.replaceAll(l1,l2));
     }
+    void split(){
+        System.out.println("Enter the string to be split:");
+        String str = sc.nextLine();
+        System.out.println("Enter the index letter");
+        String a = sc.nextLine();
+        System.out.println("Enter the limit number");
+        int b = sc.nextInt();
+        String[] arrStr = str.split(a,b);
+        for(String x : arrStr){
+            System.out.print(x+" ");
+        }
+    }
 }
 
 public class Question3 {
@@ -57,7 +69,7 @@ public class Question3 {
         Scanner sc = new Scanner(System.in);
         do{
             System.out.println("Enter the choice:");
-            System.out.println("1. String concatenation \n2. Convert to Upper Case\n3. Convert to lower case\n4. Find the length of the string\n5. Find the substring of a string\n6. Replace the string\n0. Exit");
+            System.out.println("1. String concatenation \n2. Convert to Upper Case\n3. Convert to lower case\n4. Find the length of the string\n5. Find the substring of a string\n6. Replace the string\n7. Split the string\n0. Exit");
             choice = sc.nextInt();
             switch(choice){
                 case 1: func.concatenation();
@@ -72,7 +84,8 @@ public class Question3 {
                         break;
                 case 6: func.replace();
                         break;
-//                case 7: func.split();
+                case 7: func.split();
+                        break;
                 case 0: System.out.println("Exiting....!!");
                         break;
                 default: System.out.println("Invalid Choice!!");
