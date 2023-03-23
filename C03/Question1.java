@@ -22,7 +22,7 @@ public class Question1 {
         Area obj = new Area();
         int choice;
         do{
-            System.out.println("Enter the choice\n1. Area of Circle\n2. Area of Rectangle\n3. Area of Triangle\n0. Exit");
+            System.out.print("1. Area of Circle\n2. Area of Rectangle\n3. Area of Triangle\n0. Exit\nEnter the choice:");
             choice = sc.nextInt();
             switch(choice){
                 case 1: {
