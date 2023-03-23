@@ -51,14 +51,12 @@ class Functions{
     void split(){
         System.out.println("Enter the string to be split:");
         String str = sc.nextLine();
-        System.out.println("Enter the index letter");
-        String a = sc.nextLine();
-        System.out.println("Enter the limit number");
-        int b = sc.nextInt();
-        String[] arrStr = str.split(a,b);
+        String[] arrStr = str.split(" ");
+        System.out.println("Array:");
         for(String x : arrStr){
-            System.out.print(x+" ");
+            System.out.println(x);
         }
+        System.out.println();
     }
 }
 
