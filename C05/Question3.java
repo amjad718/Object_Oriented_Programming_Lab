@@ -1,68 +1,94 @@
 package C05;
+
+import java.applet.Applet;
 import java.awt.*;
-import java.awt.event.*;
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Question3 extends Frame implements ActionListener{
-    Label l1,l2,l3,l4,l5;
-    TextField t1,t2,t3,t4,t5;
-    Button btn;
+public class Question3 extends Applet implements ActionListener {
+    private TextField[] subjectFields;
+    private Button calculateButton;
+    private double percentage;
 
-    public Question3(){
-        setTitle("Marks");
+    public void init() {
+        // Set up the applet layout
         setLayout(new FlowLayout());
 
-        l1 = new Label("Mark1");
-        l2 = new Label("Mark2");
-        l3 = new Label("Mark3");
-        l4 = new Label("Mark4");
-        l5 = new Label("Mark5");
+        // Create input fields for 5 subjects
+        subjectFields = new TextField[5];
+        for (int i = 0; i < 5; i++) {
+            subjectFields[i] = new TextField(5);
+            add(new Label("Subject " + (i + 1) + ":"));
+            add(subjectFields[i]);
+        }
 
-        t1 = new TextField("Out of 100",10);
-        t2 = new TextField("Out of 100",10);
-        t3 = new TextField("Out of 100",10);
-        t4 = new TextField("Out of 100",10);
-        t5 = new TextField("Out of 100",10);
-
-        btn = new Button("Submit");
-        btn.addActionListener(this);
-
-        add(l1);
-        add(t1);
-        add(l2);
-        add(t2);
-        add(l3);
-        add(t3);
-        add(l4);
-        add(t4);
-        add(l5);
-        add(t5);
-        add(btn);
-
-        setVisible(true);
+        // Create the calculate button
+        calculateButton = new Button("Calculate Percentage");
+        calculateButton.addActionListener(this);
+        add(calculateButton);
     }
 
     @Override
-    public void actionPerformed(ActionEvent ae) {
-        if(ae.getSource()==btn){
-            System.exit(0);
+    public void actionPerformed(ActionEvent e) {
+        // Calculate the total marks
+        int totalMarks = 0;
+        for (int i = 0; i < 5; i++) {
+            totalMarks += Integer.parseInt(subjectFields[i].getText());
         }
 
-        Integer a,b,c,d,e;
-        a = Integer.valueOf(t1.getText());
-        b = Integer.valueOf(t2.getText());
-        c = Integer.valueOf(t3.getText());
-        d = Integer.valueOf(t4.getText());
-        e = Integer.valueOf(t5.getText());
+        // Calculate the percentage
+        percentage = (totalMarks / 5.0);
 
-        Double avg = (double) ((a+b+c+d+e)/5);
-
-        
+        // Repaint the applet to display the happy/sad face
+        repaint();
     }
 
-    public static void main(String[] args) {
-        Question3 obj = new Question3();
-        obj.setSize(200,300);
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+
+        // Display the percentage
+        g.drawString("Percentage: " + percentage + "%", 20, 120);
+
+        // Calculate the center coordinates for drawing the faces
+        int centerX = getWidth() / 2;
+        int centerY = getHeight() / 2;
+
+        // Set the size of the face
+        int faceSize = 100;
+
+        // Calculate the top-left coordinates for drawing the face at the center
+        int x = centerX - faceSize / 2;
+        int y = centerY - faceSize / 2;
+
+        // Display the happy or sad face based on the percentage
+        if (percentage > 50) {
+            drawHappyFace(g, x, y, faceSize);
+        } else {
+            drawSadFace(g, x, y, faceSize);
+        }
+    }
+
+    private void drawHappyFace(Graphics g, int x, int y, int size) {
+        // Draw the happy face using simple shapes
+        g.setColor(Color.YELLOW);
+        g.fillOval(x, y, size, size);
+        g.setColor(Color.BLACK);
+        g.fillOval(x + size / 4, y + size / 2, size / 10, size / 10);
+        g.fillOval(x + 3 * size / 4 - size / 10, y + size / 2, size / 10, size / 10);
+        g.drawArc(x + size / 4, y + 3 * size / 5, size / 2, size / 4, 0, -180);
+    }
+
+    private void drawSadFace(Graphics g, int x, int y, int size) {
+        // Draw the sad face using simple shapes
+        g.setColor(Color.YELLOW);
+        g.fillOval(x, y, size, size);
+        g.setColor(Color.BLACK);
+        g.fillOval(x + size / 4, y + size / 2, size / 10, size / 10);
+        g.fillOval(x + 3 * size / 4 - size / 10, y + size / 2, size / 10, size / 10);
+        g.drawArc(x + size / 4, y + 2 * size / 5, size / 2, size / 4, 0, 180);
     }
 }
+
+
+
