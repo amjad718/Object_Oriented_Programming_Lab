@@ -1,44 +1,59 @@
-package C02;
-import java.util.*;
+package C05;
 
-class Search{
-    void search(int [] arr, int n, int item){
-        int flag = 0;
-        int count = 0;
-        for(int i=0; i<n; i++){
-            count++;
-            if(item == arr[i]) {
-                flag = 1;
-                break;
-            }
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Question2 extends Frame implements  ActionListener{
+    TextField number1Field,number2Field,number3Field;
+    Label number1Label,number2Label,number3Label,resultLabel;
+    Button btn, findButton;
+    public Question2() {
+        setTitle("Maximum Finder");
+        setSize(200,200);
+        setLayout(new FlowLayout());
+         number1Label = new Label("Number 1:");
+         number1Field = new TextField();
+         number2Label = new Label("Number 2:");
+         number2Field = new TextField();
+        number3Label = new Label("Number 3:");
+         number3Field = new TextField();
+         findButton = new Button("Find Maximum");
+         btn = new Button("Close");
+         resultLabel = new Label();
+
+        add(number1Label);
+        add(number1Field);
+        add(number2Label);
+        add(number2Field);
+        add(number3Label);
+        add(number3Field);
+        add(findButton);
+        add(resultLabel);
+        add(btn);
+
+        btn.addActionListener(this);
+        findButton.addActionListener(this);
+        setVisible(true);
+    }
+        public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==findButton) {
+            int number1 = Integer.parseInt(number1Field.getText());
+            int number2 = Integer.parseInt(number2Field.getText());
+            int number3 = Integer.parseInt(number3Field.getText());
+
+            int maximum = Math.max(number1, Math.max(number2, number3));
+
+            resultLabel.setText("Maximum: " + maximum);
         }
-        if(flag == 1){
-            System.out.println("Item is found at the position "+count);
-        }
-        else{
-            System.out.println("The entered item is not found in the array!!");
+        if(e.getSource()==btn){
+            System.exit(0);
         }
     }
-}
 
-public class Question2 {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        Search obj = new Search();
-        System.out.println("Enter the size of the array:");
-        int n = sc.nextInt();
-        int [] arr = new int[n];
-        System.out.println("Enter the array elements");
-        for(int i=0; i<n; i++){
-            arr[i] = sc.nextInt();
-        }
-        System.out.println("Array:");
-        for(int i=0; i<n; i++) {
-            System.out.print(arr[i]+"\t");
-        }
-        System.out.println();
-        System.out.println("Enter the element to search:");
-        int item = sc.nextInt();
-        obj.search(arr,n,item);
+        new Question2();
     }
+
 }
+
